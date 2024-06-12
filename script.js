@@ -16,10 +16,11 @@ function fetchFile(url){
         let tempUrl=URL.createObjectURL(file);
         let aTag=document.createElement("a");
         aTag.href=tempUrl;// passing tempUrl as href value of <a> tag
-        aTag.download="filename";//passing filename as download value of <a> tag
+        aTag.download=url.replace(/^.*[\\\/]/, '');//passing file last name & extention as download value of <a> tag
         document.body.appendChild(aTag);//adding <a> tag inside body
         aTag.click();//clicking <a> tag so the file downlaod
         aTag.remove();//removing <a> tag once file downloaded
+        URL.revokeObjectURL(tempUrl);
     }))
 
 }
